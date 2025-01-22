@@ -52,6 +52,27 @@ export class MyClass {
 
 All instance properties must be implemented in MyClass. Due to the nature of Javascript, it is impossible to create instance properties in partial classes. This is ok for static properties.
 
+How to deal with this limitation:
+
+partials/partial-1.ts
+```ts
+@Partial('MyClass')
+export class MyClassPartial1 {
+	// public myVar!: string; // Do not do this
+	declare public myVar: string; // Do this only if you need it in MyClassPartial1 class
+	/// ...
+}
+```
+
+MyClass.ts
+```ts
+@Final
+export class MyClass {
+	public myVar: string = ''; // This is where it needs to be
+	/// ...
+}
+```
+
 ## Need to Know
 
 If you implement twice the same property (static), accessoror or method into two different partial class, the latest overrides the previous version.
