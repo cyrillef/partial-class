@@ -161,7 +161,7 @@ class TSCreator {
 			if (_ts.isPropertyDeclaration(member)) {
 				//console.log(`Property: ${member.name.getText()}`);
 				if (this.isPublic(member) && this.isStatic(member))
-					this.namespace.set(member.name.getText(), this.createVariable(member));
+					this.namespace.set(member.name.getText(), this.createVariableStatement(member));
 				// Ignore properties, they do not propagate to the Final class - Javascript limitation
 			} else if (_ts.isMethodDeclaration(member)) {
 				if (this.isPublic(member) && this.isStatic(member))
@@ -256,6 +256,19 @@ class TSCreator {
 		return (property);
 	}
 
+	public createVariableStatement(member: _ts.PropertyDeclaration): _ts.VariableStatement {
+		const property: _ts.VariableDeclaration = this.createVariable(member);
+		const variableDeclarationList: _ts.VariableDeclarationList = _ts.factory.createVariableDeclarationList(
+			[property],
+			_ts.NodeFlags.Let
+		);
+		const variableStatement: _ts.VariableStatement = _ts.factory.createVariableStatement(
+			undefined, // Modifiers (optional)
+			variableDeclarationList
+		);
+		return (variableStatement);
+	}
+
 	public createMethod(member: _ts.MethodDeclaration): _ts.MethodDeclaration | _ts.FunctionDeclaration {
 		if (!this.isStatic(member)) {
 			const method: _ts.MethodDeclaration = _ts.factory.createMethodDeclaration(
@@ -288,7 +301,7 @@ class TSCreator {
 	//#region TS injectors
 	public createTargetSource(): _ts.SourceFile {
 		const dtsFilePath: string = this.filePath.replace(/\.ts$/, '.d.ts');
-		const comments: string = '// Do not modify this file. It is auto-generated from the original file.\n/*jshint esversion: 9 */\nconst version: string = \'1.0.0.0\'\n';
+		const comments: string = '// Do not modify this file. It is auto-generated from the original file.\n/*jshint esversion: 9 */\nexport const version: string\n';
 		// const comments: string = '// Do not modify this file. It is auto-generated from the original file.\n/*jshint esversion: 9 */\n\n';
 		this.targetFile = _ts.createSourceFile(dtsFilePath, comments, _ts.ScriptTarget.Latest, false, _ts.ScriptKind.TS);
 		// const comments: string = '// Do not modify this file. It is auto-generated from the original file.\nconst _version: string = \'1.0.0.0\'\n';
@@ -397,7 +410,7 @@ const onPartialClassDefinition: (tsCreator: TSCreator, node: _ts.Node) => Promis
 	= async (tsCreator: TSCreator, node: _ts.Node): Promise<void> => {
 		const item: _ts.ClassDeclaration = node as _ts.ClassDeclaration;
 		const decorators: string[] | false = tsCreator.hasDecorator(item);
-		const regex: RegExp = /Partial\(\'\w+\'\)/;
+		const regex: RegExp = /Partial(\(\'\w+\'\))?/;
 		if (decorators && (decorators as any).includesRegex(regex)) {
 			// let finalName: string = '';
 			// for (let i = 0; i < decorators.length; i++) {

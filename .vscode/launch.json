@@ -22,7 +22,7 @@
 		{
 			"type": "node", // pwa-node
 			"request": "launch",
-			"name": "Generate .d.ts",
+			"name": "Generate final.d.ts",
 			"skipFiles": [
 				"<node_internals>/**"
 			],
@@ -34,7 +34,24 @@
 			"outFiles": [
 				"${workspaceFolder}/**/*.js"
 			]
+		},
+		{
+			"type": "node", // pwa-node
+			"request": "launch",
+			"name": "Generate another.d.ts",
+			"skipFiles": [
+				"<node_internals>/**"
+			],
+			"program": "${workspaceFolder}/src/lib/scripts/dts-build.ts",
+			"args": [
+				"${workspaceFolder}/src/sample/another.ts",
+				"${workspaceFolder}/src/sample/tsconfig.json"
+			],
+			"outFiles": [
+				"${workspaceFolder}/**/*.js"
+			]
 		}
+
 
 	]
 }
