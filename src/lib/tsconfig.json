@@ -1,0 +1,31 @@
+{
+	"extends": "../tsconfig-base.json",
+	"ts-node": {
+         "require": ["tsconfig-paths/register"]
+    },
+	"compilerOptions": {
+		"module": "CommonJS",
+		"outDir": "../../bin",
+		"baseUrl": ".",
+		"rootDir": ".",
+
+		"paths": {
+			"@/enums/*": ["enums/*"],
+			"@/libs/*": ["libs/*"],
+			"@/tools/*": ["tools/*"],
+			"@/*": ["*"],
+		},
+
+	},
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.d.ts",
+		"**/*.json"
+	],
+	"exclude": [
+		"**/node_modules/*",
+		"bin",
+		"bin-sample"
+	]
+}

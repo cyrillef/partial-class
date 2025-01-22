@@ -1,0 +1,17 @@
+{
+    // If you change settings.json, call "Apply settings" from the menu.
+	
+	"triggerTaskOnSave.tasks": {
+		"create_dts": [
+			"!**/*.d.ts",
+			"!**/*.d.tsx",
+			"**/*.ts",
+			"**/*.tsx",
+		],
+	},
+
+	"editor.codeActionsOnSave": {
+		"source.organizeImports": "always",
+		"source.sortImports": "always",
+	},
+}
