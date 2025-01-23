@@ -18,11 +18,14 @@
 
 import PartialOneClass from './final/partial-1';
 import PartialTwoClass from './final/partial-2';
+
 import FinalDecoratedClass from './final';
+import AnotherClass from './another';
 
 export const test: () => void
 	= (): void => {
 
+		//#region FinalDecoratedClass
 		PartialOneClass.myStatic();
 		PartialTwoClass.myStatic();
 
@@ -40,6 +43,23 @@ export const test: () => void
 		console.log(PartialOneClass.myStaticVar);
 
 		finalDecoratedClass.printMyVar();
+		//#endregion
+
+		//#region AnotherClass
+		(AnotherClass as any).myStatic();
+		AnotherClass.myStatic();
+
+		const anotherClass: AnotherClass = new AnotherClass();
+		anotherClass.hello();
+		(anotherClass as any).whoAmI();
+		anotherClass.whoAmI();
+		(anotherClass as any).whoAreYou();
+		anotherClass.whoAreYou();
+
+		console.log(anotherClass.myVar);
+
+		anotherClass.printMyVar();
+		//#endregion
 
 	};
 

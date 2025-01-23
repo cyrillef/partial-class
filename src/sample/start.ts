@@ -36,7 +36,7 @@ const runTests: (tests: ((() => Promise<void>) | (() => void))[], title?: string
 
 (async () => {
 
-	//#region DecoDecorators Partial Classesators
+	//#region Decorators Partial Classes
 	await runTests([testDecorated], 'Decorators Partial Classes');
 	//#endregion
 

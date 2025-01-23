@@ -35,12 +35,29 @@ export type ClassDefinition = { new(...args: any[]): {} };
 
 export const PartialClasses: Map<string, ClassDefinition[]> = new Map<string, ClassDefinition[]>();
 
-export function Partial(name: string): Function {
-	return (function (target: Object, _name: string | symbol, _descriptor?: TypedPropertyDescriptor<any>): void {
-		if (!PartialClasses.has(name))
-			PartialClasses.set(name, []);
-		PartialClasses.get(name)?.push(target as ClassDefinition);
-	});
+export function Partial(name: string | symbol): Function;
+export function Partial(target: Function): void;
+export function Partial(...args: any[]): Function | void {
+	if (typeof args[0] === 'function') {
+		const target: any = args[0];
+		const name: string | symbol = target.name;
+		if (!PartialClasses.has(name as string))
+			PartialClasses.set(name as string, []);
+		PartialClasses.get(name as string)?.push(target as ClassDefinition);
+	} else if (typeof args[0] === 'string') {
+		const finalClassName: string | symbol = args[0]
+		return (function (target: Object): void {
+			if (!PartialClasses.has(finalClassName as string || (target as any).name))
+				PartialClasses.set(finalClassName as string, []);
+			PartialClasses.get(finalClassName as string)?.push(target as ClassDefinition);
+		});
+	} else {
+		return (function (target: Object): void {
+			if (!PartialClasses.has((target as any).name))
+				PartialClasses.set((target as any).name, []);
+			PartialClasses.get((target as any).name)?.push(target as ClassDefinition);
+		});
+	}
 }
 
 export function Final<T extends ClassDefinition>(constructor: T): T {

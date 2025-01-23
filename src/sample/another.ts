@@ -16,7 +16,7 @@
 //
 /*jshint esversion: 9 */
 
-/// <reference path='./final.d.ts' />
+/// <reference path='./another.d.ts' />
 
 // @ts-ignore
 import { Final } from '../bin/index'; // should be: import { Final } from 'partial-class';
@@ -34,6 +34,6 @@ export class AnotherClass {
 		console.log(`I am hello() from AnotherClass`);
 	}
 
-} 
+}
 
 export default AnotherClass;

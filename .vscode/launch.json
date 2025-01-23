@@ -6,8 +6,8 @@
 	"configurations": [
 		{
 			"type": "node", // pwa-node
-			"request": "launch Sample",
-			"name": "Launch Program",
+			"request": "launch",
+			"name": "Launch Sample",
 			"skipFiles": [
 				"<node_internals>/**"
 			],
