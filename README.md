@@ -135,7 +135,7 @@ Install the ['Trigger Task on Save'](https://marketplace.visualstudio.com/items?
 		"args": [
 			"-P",
 			"${workspaceFolder}/src/sample",
-			"${workspaceFolder}/src/lib/scripts/dts-build.ts",
+			"${workspaceFolder}/node_modules/partial-class/bin/scripts/dts-build.js",
 			"${file}",
 			"${workspaceFolder}/src/sample/tsconfig.json"
 		],
