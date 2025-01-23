@@ -9,7 +9,12 @@
 		"run:sample": "node bin-sample/start.js"
 	},
 	"main": "./bin/index.js",
-	"types": ".bin/index.d.ts",
+	"types": "./bin/index.d.ts",
+	"exports": {
+		".": "./bin/index.js",
+		"./package": "./package.json",
+		"./package.json": "./package.json"
+	},
 	"keywords": [
 		"Node"
 	],
