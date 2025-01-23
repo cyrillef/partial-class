@@ -1,6 +1,6 @@
 {
-	"name": "parial-class",
-	"version": "0.0.2",
+	"name": "partial-class",
+	"version": "0.0.3",
 	"description": "Partial Class Experimental Library",
 	"scripts": {
 		"build:lib": "tsc -p src/lib/tsconfig.json",
