@@ -22,6 +22,13 @@ import { Partial } from 'partial-class';
 export class MyClassPartial1 {
 	/// ...
 }
+
+// or
+
+@Partial
+export class MyClass {
+	/// ...
+}
 ```
 
 partials/partial-2.ts
@@ -30,6 +37,13 @@ import { Partial } from 'partial-class';
 
 @Partial('MyClass')
 export class MyClassPartial2 {
+	/// ...
+}
+
+// or
+
+@Partial
+export class MyClass {
 	/// ...
 }
 ```
@@ -89,7 +103,9 @@ ts-node ../lib/scripts/dts-build.ts -P . ./final.ts ./tsconfig.json
 
 # Installing the automatic augmentation file generation
 
-In VSCode, 
+In VSCode,
+
+Install the ['Trigger Task on Save'](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.triggertaskonsave) extenstion.
 
 .vscode/settings.json
 ```json
