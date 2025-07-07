@@ -17,7 +17,7 @@
 /*jshint esversion: 9 */
 
 // @ts-ignore
-import { Partial } from '../../../../bin/index'; // should be: import { Partial } from 'partial-class';
+import { Partial } from 'partial-class';
 
 @Partial('FinalDecoratedClass')
 export class PartialOneClass {

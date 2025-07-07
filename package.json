@@ -24,7 +24,8 @@
 	"dependencies": {
 		"ejs": "^3.1.10",
 		"moment": "^2.30.1",
-		"reflect-metadata": "^0.2.2"
+		"reflect-metadata": "^0.2.2",
+		"partial-class": "file:./bin/index.js"
 	},
 	"devDependencies": {
 		"@types/jest": "^30.0.0",

@@ -19,7 +19,7 @@
 /// <reference path='./final.d.ts' />
 
 // @ts-ignore
-import { Final } from '../../../bin/index'; // should be: import { Final } from 'partial-class';
+import { Final } from 'partial-class';
 export * from './final/partial-1';
 export * from './final/partial-2';
 
