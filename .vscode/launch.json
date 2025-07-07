@@ -5,6 +5,32 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "Jest Tests (single)",
+			"type": "node",
+			"request": "launch",
+			"program": "${workspaceFolder}/node_modules/.bin/jest",
+			"args": [
+				// "--runTestsByPath=${file}",
+				"${file}",
+				//"${fileBasename}",
+				"--runInBand",
+				"--testTimeout",
+				"5000",
+				"--detectOpenHandles",
+				"--config",
+				"${workspaceFolder}/src/__tests__/_config/jest.config.ts",
+				//"--verbose",
+			],
+			"cwd": "${fileDirname}",
+			"env": {
+				//"JEST_TEST_FILE": "${fileBasename}",
+				"NODE_ENV": "test",
+			},
+			"console": "integratedTerminal",
+			"internalConsoleOptions": "neverOpen"
+		},
+
+		{
 			"type": "node", // pwa-node
 			"request": "launch",
 			"name": "Launch Sample",
@@ -51,7 +77,6 @@
 				"${workspaceFolder}/**/*.js"
 			]
 		}
-
 
 	]
 }

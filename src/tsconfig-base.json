@@ -1,7 +1,8 @@
 {
 	"compilerOptions": {
 		"target": "es2020",
-		"types": ["node"],
+		"types": ["node", "jest", "ts-jest"],
+		"moduleResolution": "node",
 		"composite": true,
 		"noImplicitReturns": true,
 		"noUnusedLocals": true,
@@ -16,7 +17,8 @@
 		"skipLibCheck": true,
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
-		"removeComments": true
+		"removeComments": true,
+		//"traceResolution": true,
 	},
 	"include": [
 	],

@@ -1,0 +1,33 @@
+{
+	"extends": "../tsconfig-base.json",
+	"compilerOptions": {
+		"module": "ESNext",
+		// "module": "CommonJS",
+		//"module": "NodeNext",
+		"baseUrl": ".",
+		"rootDir": "..",
+		"outDir": "../../bin-tests",
+
+		"paths": {
+			"@/decorators/*": ["../lib/decorators/*"],
+			"@/enums/*": ["../lib/enums/*"],
+			"@/is/*": ["../lib/is/*"],
+			"@/libs/*": ["../lib/libs/*"],
+			"@/scripts/*": ["../lib/scripts/*"],
+			//"@/*": ["../lib/*"],
+			
+			"@/tests/*": ["./*"],
+		},
+
+	},
+	"include": [
+		"**/next-env.d.ts",
+		"**/*.ts",
+		"../lib/**/*.ts"
+	],
+	"exclude": [
+		"**/node_modules/*",
+		"bin",
+		"bin-tests"
+	]
+}

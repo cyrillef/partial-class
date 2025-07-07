@@ -16,24 +16,12 @@
 //
 /*jshint esversion: 9 */
 
-/// <reference path='./another.d.ts' />
+//#region isBoolean isBool
+export const isBoolean: (value: any) => value is boolean
+	= (value: any): value is boolean =>
+		value === true || value === false || (typeof value === 'object' && value instanceof Boolean);
 
-// @ts-ignore
-import { Final } from '../bin/index'; // should be: import { Final } from 'partial-class';
-export * from './another/another-1';
-export * from './another/another-2';
-
-@Final
-export class AnotherClass {
-
-	public myVar: string = 'I am myVar from AnotherClass';
-
-	public constructor() { }
-
-	public hello(): void {
-		console.log(`I am hello() from AnotherClass`);
-	}
-
-}
-
-export default AnotherClass;
+export const isBool: (value: any) => value is boolean
+	= (value: any): value is boolean =>
+		isBoolean(value);
+//#endregion

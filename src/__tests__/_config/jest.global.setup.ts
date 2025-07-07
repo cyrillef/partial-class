@@ -16,29 +16,25 @@
 //
 /*jshint esversion: 9 */
 
-// @ts-ignore
-import { Partial } from '../../bin/index'; // should be: import { Partial } from 'partial-class';
+// import type { GlobalConfig } from '@jest/types';
 
-@Partial('FinalDecoratedClass')
-export class PartialOneClass {
+import _path from 'path';
+import * as TSConfigPaths from 'tsconfig-paths';
+import { aliases } from './jest.config';
+// global.__dirname = __dirname;
 
-	// public myVar!: string;
-	declare public myVar: string;
+const baseUrl: string = _path.resolve(__dirname, '..');
+// @ts-ignore: TS6133
+const cleanup: () => void = TSConfigPaths.register({
+	baseUrl,
+	paths: aliases, // tsConfig.compilerOptions.paths,
+});
 
-	public static myStaticVar: string = `I am myStaticVar from PartialOneClass`;
+export const globalSetup: () => Promise<void>
+	= async (): Promise<void> => {
+	};
 
-	public whoAmI(): void {
-		console.log(`I am whoAmI() from PartialOneClass`);
-	}
+// afterAll(async (): Promise<void> => {
+// });
 
-	public static myStatic(): void {
-		console.log(`I am myStatic() from PartialOneClass`);
-	}
-
-	public printMyVar(): void {
-		console.log(`printing from PartialOneClass, this.myVar = ${this.myVar}`);
-	}
-
-}
-
-export default PartialOneClass;
+export default globalSetup;

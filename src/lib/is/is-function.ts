@@ -16,28 +16,10 @@
 //
 /*jshint esversion: 9 */
 
-import 'module-alias/register';
-import _path from 'path';
-import _fs from 'fs/promises';
+import { isNull } from '@/is/is-defined';
 
-import { test as testDecorated } from './partial/test';
-
-const runTests: (tests: ((() => Promise<void>) | (() => void))[], title?: string) => Promise<void>
-	= async (tests: ((() => Promise<void>) | (() => void))[], title: string = 'default'): Promise<void> => {
-		console.log(title);
-		const underline: string[] = new Array(title.length).fill('-');
-		console.log(underline.join(''));
-
-		for (let i = 0; i < tests.length; i++)
-			await tests[i]();
-
-		console.log(' ');
-	};
-
-(async () => {
-
-	//#region Decorators Partial Classes
-	await runTests([testDecorated], 'Decorators Partial Classes');
-	//#endregion
-
-})();
+//#region isFunction
+export const isFunction: (value: any) => value is Function
+	= (value: any): value is Function =>
+		typeof value === 'function' && !isNull(value);
+//#endregion

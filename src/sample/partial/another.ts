@@ -16,23 +16,24 @@
 //
 /*jshint esversion: 9 */
 
+/// <reference path='./another.d.ts' />
+
 // @ts-ignore
-import { Partial } from '../../bin/index'; // should be: import { Partial } from 'partial-class';
+import { Final } from '../../../bin/index'; // should be: import { Final } from 'partial-class';
+export * from './another/another-1';
+export * from './another/another-2';
 
-@Partial('FinalDecoratedClass')
-export class PartialTwoClass {
+@Final
+export class AnotherClass {
 
-	// This is not allowed because instance variable in TS must be in the final class
-	public myVar: string = 'I am myVar from PartialTwoClass';
+	public myVar: string = 'I am myVar from AnotherClass';
 
-	public whoAreYou(): void {
-		console.log(`I am whoAreYou() from PartialTwoClass`);
-	}
+	public constructor() { }
 
-	public static myStatic(): void {
-		console.log(`I am myStatic() from PartialTwoClass`);
+	public hello(): void {
+		console.log(`I am hello() from AnotherClass`);
 	}
 
 }
 
-export default PartialTwoClass;
+export default AnotherClass;

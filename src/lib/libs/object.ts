@@ -16,15 +16,11 @@
 //
 /*jshint esversion: 9 */
 
+import Dictionary from "./types";
+
 // Deep copies properties of all sources into target object.
-// The last source overrides all properties of the previous
-// ones, if they have the same names
-export function deepAssign<T, S1, S2, S3>(
-	target: T,
-	source1: S1,
-	source2: S2,
-	source3: S3
-): T & S1 & S2 & S3;
+// The last source overrides all properties of the previous ones, if they have the same names
+export function deepAssign<T, S1, S2, S3>(target: T, source1: S1, source2: S2, source3: S3): T & S1 & S2 & S3;
 export function deepAssign<T, S1, S2>(target: T, source1: S1, source2: S2): T & S1 & S2;
 export function deepAssign<T, S>(target: T, source: S): T & S;
 export function deepAssign<S>(target: {}, source: S): S;
@@ -77,36 +73,38 @@ export function deepAssign(target: any, ...sources: any[]): any {
 // @param input RegExp - I am the regular expression object being cloned.
 // @param injectFlags String( Optional ) - I am the flags to enforce on the clone.
 // @source https://www.bennadel.com/blog/2664-cloning-regexp-regular-expression-objects-in-javascript.htm
-export function cloneRegExp(input: RegExp, injectFlags?: string): RegExp {
-	const pattern: string = input.source;
-	let flags: string = '';
-	// Make sure the parameter is a defined string - it will make the conditional logic easier to read.
-	injectFlags = injectFlags || '';
-	// Test for global.
-	if (input.global || /g/i.test(injectFlags))
-		flags += 'g';
-	// Test for ignoreCase.
-	if (input.ignoreCase || /i/i.test(injectFlags))
-		flags += 'i';
-	// Test for multiline.
-	if (input.multiline || /m/i.test(injectFlags))
-		flags += 'm';
-	// Return a clone with the additive flags.
-	return (new RegExp(pattern, flags));
-}
+export const cloneRegExp: (input: RegExp, injectFlags?: string) => RegExp
+	= (input: RegExp, injectFlags?: string): RegExp => {
+		const pattern: string = input.source;
+		let flags: string = '';
+		// Make sure the parameter is a defined string - it will make the conditional logic easier to read.
+		injectFlags = injectFlags || '';
+		// Test for global.
+		if (input.global || /g/i.test(injectFlags))
+			flags += 'g';
+		// Test for ignoreCase.
+		if (input.ignoreCase || /i/i.test(injectFlags))
+			flags += 'i';
+		// Test for multiline.
+		if (input.multiline || /m/i.test(injectFlags))
+			flags += 'm';
+		// Return a clone with the additive flags.
+		return (new RegExp(pattern, flags));
+	};
 
-export function getAllPropertyNames(obj: any): string[] {
-	const names: string[] = [];
-	const exists: { [name: string]: boolean | undefined } = {};
-	do {
-		// eslint-disable-next-line prefer-spread
-		names.push.apply(names, Object.getOwnPropertyNames(obj));
-		obj = Object.getPrototypeOf(obj);
-	} while (obj !== Object.prototype);
+export const getAllPropertyNames: (obj: any) => string[]
+	= (obj: any): string[] => {
+		const names: string[] = [];
+		const exists: Dictionary<boolean | undefined> = {};
+		do {
+			// eslint-disable-next-line prefer-spread
+			names.push.apply(names, Object.getOwnPropertyNames(obj));
+			obj = Object.getPrototypeOf(obj);
+		} while (obj !== Object.prototype);
 
-	return (names.filter((name: string): boolean => {
-		const isValid: boolean = !exists[name] && name !== 'constructor';
-		exists[name] = true;
-		return (isValid);
-	}));
-}
+		return (names.filter((name: string): boolean => {
+			const isValid: boolean = !exists[name] && name !== 'constructor';
+			exists[name] = true;
+			return (isValid);
+		}));
+	};

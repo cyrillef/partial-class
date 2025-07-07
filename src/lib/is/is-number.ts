@@ -16,28 +16,17 @@
 //
 /*jshint esversion: 9 */
 
-import 'module-alias/register';
-import _path from 'path';
-import _fs from 'fs/promises';
+//#region isNumber isInteger isFloat
+export const isNumber: (value: any) => value is number
+	= (value: any): value is number =>
+		//!Number.isNaN(Number.parseFloat(value)) && Number.isFinite(Number(value));
+		typeof value === 'number' && !Number.isNaN(value) && Number.isFinite(value);
 
-import { test as testDecorated } from './partial/test';
+export const isInteger: (value: any) => value is number
+	= (value: any): value is number =>
+		isNumber(value) && Number.isInteger(value); // isSafeInteger
 
-const runTests: (tests: ((() => Promise<void>) | (() => void))[], title?: string) => Promise<void>
-	= async (tests: ((() => Promise<void>) | (() => void))[], title: string = 'default'): Promise<void> => {
-		console.log(title);
-		const underline: string[] = new Array(title.length).fill('-');
-		console.log(underline.join(''));
-
-		for (let i = 0; i < tests.length; i++)
-			await tests[i]();
-
-		console.log(' ');
-	};
-
-(async () => {
-
-	//#region Decorators Partial Classes
-	await runTests([testDecorated], 'Decorators Partial Classes');
-	//#endregion
-
-})();
+export const isFloat: (value: any) => value is number
+	= (value: any): value is number =>
+		isNumber(value) && !Number.isInteger(value);
+//#endregion

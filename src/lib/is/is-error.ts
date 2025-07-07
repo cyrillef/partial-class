@@ -16,28 +16,21 @@
 //
 /*jshint esversion: 9 */
 
-import 'module-alias/register';
-import _path from 'path';
-import _fs from 'fs/promises';
+import { isObject } from '@/is/is-defined';
 
-import { test as testDecorated } from './partial/test';
-
-const runTests: (tests: ((() => Promise<void>) | (() => void))[], title?: string) => Promise<void>
-	= async (tests: ((() => Promise<void>) | (() => void))[], title: string = 'default'): Promise<void> => {
-		console.log(title);
-		const underline: string[] = new Array(title.length).fill('-');
-		console.log(underline.join(''));
-
-		for (let i = 0; i < tests.length; i++)
-			await tests[i]();
-
-		console.log(' ');
+//#region isError
+const baseGetTag: (value: any) => string
+	= (value: any): string => {
+		if (value === null)
+			return (value === undefined ? '[object Undefined]' : '[object Null]');
+		return (toString.call(value));
 	};
 
-(async () => {
-
-	//#region Decorators Partial Classes
-	await runTests([testDecorated], 'Decorators Partial Classes');
-	//#endregion
-
-})();
+export const isError: (value: any) => value is Error | DOMException
+	= (value: any): value is Error | DOMException => {
+		if (!isObject(value))
+			return (false);
+		const tag: string = baseGetTag(value);
+		return (tag === '[object Error]' || tag === '[object DOMException]');
+	};
+//#endregion

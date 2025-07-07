@@ -16,28 +16,23 @@
 //
 /*jshint esversion: 9 */
 
-import 'module-alias/register';
-import _path from 'path';
-import _fs from 'fs/promises';
+// @ts-ignore
+import { Partial } from '../../../../bin/index'; // should be: import { Partial } from 'partial-class';
 
-import { test as testDecorated } from './partial/test';
+@Partial
+export class AnotherClass {
 
-const runTests: (tests: ((() => Promise<void>) | (() => void))[], title?: string) => Promise<void>
-	= async (tests: ((() => Promise<void>) | (() => void))[], title: string = 'default'): Promise<void> => {
-		console.log(title);
-		const underline: string[] = new Array(title.length).fill('-');
-		console.log(underline.join(''));
+	// This is not allowed because instance variable in TS must be in the final class
+	public myVar: string = 'I am myVar from AnotherClass-2';
 
-		for (let i = 0; i < tests.length; i++)
-			await tests[i]();
+	public whoAreYou(): void {
+		console.log(`I am whoAreYou() from AnotherClass-2`);
+	}
 
-		console.log(' ');
-	};
+	public static myStatic(): void {
+		console.log(`I am myStatic() from AnotherClass-2`);
+	}
 
-(async () => {
+}
 
-	//#region Decorators Partial Classes
-	await runTests([testDecorated], 'Decorators Partial Classes');
-	//#endregion
-
-})();
+export default AnotherClass;

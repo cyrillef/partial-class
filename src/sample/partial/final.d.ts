@@ -1,8 +1,8 @@
 // Do not modify this file. It is auto-generated from the original file.
 /*jshint esversion: 9 */
 var version: string;
-import { FinalDecoratedClass } from "/Users/cyrille/Developer/experimentals/partial-class/src/sample/final.ts";
-declare module "/Users/cyrille/Developer/experimentals/partial-class/src/sample/final.ts" {
+import { FinalDecoratedClass } from "/Users/cyrille/Developer/experimentals/partial-class/src/sample/partial/final.ts";
+declare module "/Users/cyrille/Developer/experimentals/partial-class/src/sample/partial/final.ts" {
     interface FinalDecoratedClass {
         whoAmI(): void;
         printMyVar(): void;

@@ -16,28 +16,29 @@
 //
 /*jshint esversion: 9 */
 
-import 'module-alias/register';
-import _path from 'path';
-import _fs from 'fs/promises';
+// @ts-ignore
+import { Partial } from '../../../../bin/index'; // should be: import { Partial } from 'partial-class';
 
-import { test as testDecorated } from './partial/test';
+@Partial('FinalDecoratedClass')
+export class PartialOneClass {
 
-const runTests: (tests: ((() => Promise<void>) | (() => void))[], title?: string) => Promise<void>
-	= async (tests: ((() => Promise<void>) | (() => void))[], title: string = 'default'): Promise<void> => {
-		console.log(title);
-		const underline: string[] = new Array(title.length).fill('-');
-		console.log(underline.join(''));
+	// public myVar!: string;
+	declare public myVar: string;
 
-		for (let i = 0; i < tests.length; i++)
-			await tests[i]();
+	public static myStaticVar: string = `I am myStaticVar from PartialOneClass`;
 
-		console.log(' ');
-	};
+	public whoAmI(): void {
+		console.log(`I am whoAmI() from PartialOneClass`);
+	}
 
-(async () => {
+	public static myStatic(): void {
+		console.log(`I am myStatic() from PartialOneClass`);
+	}
 
-	//#region Decorators Partial Classes
-	await runTests([testDecorated], 'Decorators Partial Classes');
-	//#endregion
+	public printMyVar(): void {
+		console.log(`printing from PartialOneClass, this.myVar = ${this.myVar}`);
+	}
 
-})();
+}
+
+export default PartialOneClass;

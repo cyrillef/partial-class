@@ -16,23 +16,13 @@
 //
 /*jshint esversion: 9 */
 
-// @ts-ignore
-import { Partial } from '../../bin/index'; // should be: import { Partial } from 'partial-class';
+// import type { GlobalConfig } from '@jest/types';
+import _path from 'path';
+// global.__dirname = __dirname;
 
-@Partial
-export class AnotherClass {
+export const globalTeardown: () => Promise<void>
+	= async (): Promise<void> => {
 
-	// This is not allowed because instance variable in TS must be in the final class
-	public myVar: string = 'I am myVar from AnotherClass-2';
+	};
 
-	public whoAreYou(): void {
-		console.log(`I am whoAreYou() from AnotherClass-2`);
-	}
-
-	public static myStatic(): void {
-		console.log(`I am myStatic() from AnotherClass-2`);
-	}
-
-}
-
-export default AnotherClass;
+export default globalTeardown;

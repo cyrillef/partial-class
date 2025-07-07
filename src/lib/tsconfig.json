@@ -10,9 +10,11 @@
 		"rootDir": ".",
 
 		"paths": {
+			"@/decorators/*": ["decorators/*"],
 			"@/enums/*": ["enums/*"],
+			"@/is/*": ["is/*"],
 			"@/libs/*": ["libs/*"],
-			"@/tools/*": ["tools/*"],
+			"@/scripts/*": ["scripts/*"],
 			"@/*": ["*"],
 		},
 

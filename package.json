@@ -1,12 +1,13 @@
 {
 	"name": "partial-class",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"description": "Partial Class Experimental Library",
 	"scripts": {
 		"build:lib": "tsc -p src/lib/tsconfig.json",
 		"build:sample": "tsc -p src/sample/tsconfig.json",
 		"build": "npm run build:lib && npm run build:sample",
-		"run:sample": "node bin-sample/start.js"
+		"run:sample": "node bin-sample/start.js",
+		"tests": "cross-env NODE_ENV=test jest --testTimeout=5000 --runInBand --config=./src/__tests__/_config/jest.config.ts --runTestsByPath=./src/__tests__"
 	},
 	"main": "./bin/index.js",
 	"types": "./bin/index.d.ts",
@@ -22,11 +23,16 @@
 	"license": "MIT",
 	"dependencies": {
 		"ejs": "^3.1.10",
+		"moment": "^2.30.1",
 		"reflect-metadata": "^0.2.2"
 	},
 	"devDependencies": {
-		"@types/node": "^22.9.0",
+		"@types/jest": "^30.0.0",
+		"@types/node": "^24.0.10",
+		"cross-env": "^7.0.3",
+		"jest-extended": "^6.0.0",
 		"module-alias": "^2.2.3",
+		"ts-jest": "^29.4.0",
 		"ts-node": "^10.9.2",
 		"tsconfig-paths": "^4.2.0",
 		"typescript": "^5.0.4"
@@ -34,10 +40,18 @@
 	"prettier": {
 		"singleQuote": true
 	},
+	"jest": {
+		"testEnvironment": "node",
+		"coveragePathIgnorePatterns": [
+			"/node_modules/"
+		]
+	},
 	"_moduleAliases": {
+		"@/decorators": "bin/decorators",
 		"@/enums": "bin/enums",
+		"@/is": "bin/is",
 		"@/libs": "bin/libs",
-		"@/tools": "bin/tools",
+		"@/scripts": "bin/scripts",
 		"@": "bin"
 	}
 }

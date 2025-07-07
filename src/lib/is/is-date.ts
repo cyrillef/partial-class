@@ -16,24 +16,12 @@
 //
 /*jshint esversion: 9 */
 
-/// <reference path='./final.d.ts' />
+import { isNull } from '@/is/is-defined';
+import moment from 'moment';
 
-// @ts-ignore
-import { Final } from '../bin/index'; // should be: import { Final } from 'partial-class';
-export * from './final/partial-1';
-export * from './final/partial-2';
-
-@Final
-export class FinalDecoratedClass {
-
-	public myVar: string = 'I am myVar from FinalDecoratedClass';
-
-	public constructor() { }
-
-	public hello(): void {
-		console.log(`I am hello() from FinalDecoratedClass`);
-	}
-
-}
-
-export default FinalDecoratedClass;
+//#region isDate
+export const isDate: (value: any) => value is Date
+	= (value: any): value is Date =>
+		(value instanceof Date || moment.isMoment(value))
+		&& !isNull(value) && moment(value).isValid();
+//#endregion

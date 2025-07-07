@@ -23,6 +23,8 @@ export const formatToJson: (value: any, space?: string | number) => string
 			= (_key: string, value: any): any => {
 				if (typeof value === 'function')
 					return (`f ${value.name}`);
+				if (Object.prototype.toString.call(value) === '[object RegExp]')
+					return (value.toString());
 				return (value);
 			};
 

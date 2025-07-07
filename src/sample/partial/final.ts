@@ -16,29 +16,24 @@
 //
 /*jshint esversion: 9 */
 
+/// <reference path='./final.d.ts' />
+
 // @ts-ignore
-import { Partial } from '../../bin/index'; // should be: import { Partial } from 'partial-class';
+import { Final } from '../../../bin/index'; // should be: import { Final } from 'partial-class';
+export * from './final/partial-1';
+export * from './final/partial-2';
 
-@Partial
-export class AnotherClass {
+@Final
+export class FinalDecoratedClass {
 
-	// public myVar!: string;
-	declare public myVar: string;
+	public myVar: string = 'I am myVar from FinalDecoratedClass';
 
-	public static myStaticVar: string = `I am myStaticVar from AnotherClass-1`;
+	public constructor() { }
 
-	public whoAmI(): void {
-		console.log(`I am whoAmI() from AnotherClass-1`);
-	}
-
-	public static myStatic(): void {
-		console.log(`I am myStatic() from AnotherClass-1`);
-	}
-
-	public printMyVar(): void {
-		console.log(`printing from AnotherClass-1, this.myVar = ${this.myVar}`);
+	public hello(): void {
+		console.log(`I am hello() from FinalDecoratedClass`);
 	}
 
 }
 
-export default AnotherClass;
+export default FinalDecoratedClass;
