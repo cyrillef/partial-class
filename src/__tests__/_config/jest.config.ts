@@ -41,7 +41,7 @@ export const aliases: any = {
 	'@/scripts/*': [`${serverSrc}/scripts/*`],
 	//'@/*': [`${serverSrc}/*`],
 
-	'@/tests/*': [`${testsSrc}/server/*`],
+	'@/tests/*': [`${testsSrc}/*`],
 };
 
 // https://kulshekhar.github.io/ts-jest/docs/

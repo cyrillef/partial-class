@@ -61,57 +61,6 @@ export const test: () => void
 		anotherClass.printMyVar();
 		//#endregion
 
-		//#region Mixins
-		// const Mixin1: <T extends new (...args: any[]) => any>(SuperClass: T) => any
-		// 	= <T extends new (...args: any[]) => any>(SuperClass: T): any =>
-		// 		class extends SuperClass {
-		// 			public fooMessage: string = 'foo';
-
-		// 			public foo(): void {
-		// 				console.log("Message from Mixin1:", this.fooMessage);
-		// 			}
-		// 		};
-
-		// const Mixin2: <T extends new (...args: any[]) => any>(SuperClass: T) => any
-		// 	= <T extends new (...args: any[]) => any>(SuperClass: T): any =>
-		// 		class extends SuperClass {
-		// 			public barMessage: string = 'bar';
-
-		// 			public bar(): void {
-		// 				console.log('Message from Mixin2:', this.barMessage);
-		// 			}
-		// 		};
-
-		// const Mixin3: <T extends new (...args: any[]) => any>(SuperClass: T) => any
-		// 	= <T extends new (...args: any[]) => any>(SuperClass: T): any =>
-		// 		class extends SuperClass {
-		// 			public bazMessage: string = 'baz';
-
-		// 			public baz(): void {
-		// 				console.log('Message from Mixin3:', this.bazMessage);
-		// 			}
-		// 		};
-
-		// class FinalClass extends Mixin3(Mixin2(Mixin1(class { }))) {
-		// 	public constructor() {
-		// 		super();
-		// 	}
-
-		// 	public test() {
-		// 		this.foo();
-		// 		this.bar();
-		// 		this.baz();
-
-		// 	}
-		// }
-
-		// let c: FinalClass = new FinalClass();
-		// c.test();
-		// c.foo();
-		// c.bar();
-		// c.baz();
-		//#endregion
-
 	};
 
 export default test;
