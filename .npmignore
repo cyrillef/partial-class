@@ -1,9 +1,10 @@
 tests/
 bin-sample/
 
-*.DS_Store
-.log
+.DS_Store
+*.log
 npm-debug.log
 doc/
 coverage/
 node_modules/
+*.tgz

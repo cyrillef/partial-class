@@ -1,6 +1,6 @@
 {
 	"name": "partial-class",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"description": "Partial Class Experimental Library",
 	"scripts": {
 		"build:lib": "tsc -p src/lib/tsconfig.json",
@@ -10,14 +10,13 @@
 		"tests": "cross-env NODE_ENV=test jest --testTimeout=5000 --runInBand --config=./src/__tests__/_config/jest.config.ts --runTestsByPath=./src/__tests__"
 	},
 	"main": "./bin/index.js",
+	"module": "./bin/index.js",
 	"types": "./bin/index.d.ts",
 	"exports": {
-		".": "./bin/index.js",
-		"./package": "./package.json",
-		"./package.json": "./package.json"
+		".": "./bin/index.js"
 	},
 	"keywords": [
-		"Node"
+		"node"
 	],
 	"author": "Cyrille Fauvel <cyrillefl@free.fr>",
 	"license": "MIT",

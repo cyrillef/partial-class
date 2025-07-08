@@ -16,20 +16,20 @@
 //
 /*jshint esversion: 9 */
 
-export * from '@/libs/json';
-export * from '@/libs/mixins';
-export * from '@/libs/object';
-export * from '@/libs/types';
+export * from './libs/json';
+export * from './libs/mixins';
+export * from './libs/object';
+export * from './libs/types';
 
-export * from '@/decorators/decorator-service';
-export * from '@/decorators/partial';
+export * from './decorators/decorator-service';
+export * from './decorators/partial';
 
-export * from '@/is/is-boolean';
-export * from '@/is/is-class';
-export * from '@/is/is-date';
-export * from '@/is/is-defined';
-export * from '@/is/is-equal';
-export * from '@/is/is-error';
-export * from '@/is/is-function';
-export * from '@/is/is-number';
-export * from '@/is/is-string';
+export * from './is/is-boolean';
+export * from './is/is-class';
+export * from './is/is-date';
+export * from './is/is-defined';
+export * from './is/is-equal';
+export * from './is/is-error';
+export * from './is/is-function';
+export * from './is/is-number';
+export * from './is/is-string';

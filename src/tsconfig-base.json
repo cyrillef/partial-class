@@ -17,6 +17,7 @@
 		"skipLibCheck": true,
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
+		//"allowSyntheticDefaultImports": true,
 		"removeComments": true,
 		//"traceResolution": true,
 	},
