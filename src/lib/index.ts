@@ -21,6 +21,7 @@ export * from '@/libs/mixins';
 export * from '@/libs/object';
 export * from '@/libs/types';
 
+export * from '@/decorators/decorator-service';
 export * from '@/decorators/partial';
 
 export * from '@/is/is-boolean';
